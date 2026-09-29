@@ -1,0 +1,608 @@
+ @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+
+/*
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Vazirmatn", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #132F3E 0%, #0B1F2A 70%);
+  padding: 20px;
+  color: #F5F5F5;
+}
+
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: #132F3E;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(212, 175, 55, 0.08);
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  color: #D4AF37;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #A9B7BE;
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: #A9B7BE;
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  background: #0B1F2A;
+  border: 1px solid #1F4457;
+  border-radius: 10px;
+  color: #F5F5F5;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #D4AF37, #F1D27A);
+  color: #0B1F2A;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #1F4457;
+  color: #A9B7BE;
+}
+
+.btn-secondary:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.result {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px dashed rgba(212, 175, 55, 0.4);
+  text-align: center;
+}
+
+.result span {
+  display: block;
+  font-size: 12px;
+  color: #A9B7BE;
+  margin-bottom: 6px;
+}
+
+.result strong {
+  font-size: 22px;
+  color: #D4AF37;
+  letter-spacing: 0.5px;
+}
+
+.hint {
+  font-size: 11px;
+  color: #D4AF37;
+  opacity: 0.7;
+  margin-right: 4px;
+}
+
+.result .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #A9B7BE;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result .row:last-child {
+  border-bottom: none;
+}
+
+.result .row strong {
+  color: #F5F5F5;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.result .row.total {
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(212, 175, 55, 0.4);
+}
+
+.result .row.total span {
+  color: #D4AF37;
+  font-weight: 600;
+}
+
+.result .row.total strong {
+  color: #D4AF37;
+  font-size: 20px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ! ================== Version 2 */
+
+:root {
+  /* --- پس‌زمینه‌ها --- */
+  --color-bg-deep:        #0a1d27;
+  --color-bg-mid:         #132F3E;
+  --color-bg-input:       #0B1F2A;
+  --color-bg-radial:      #132F3E;
+
+  /* --- رنگ‌های طلایی --- */
+  --color-gold:           #d4bc37;
+  --color-gold-light:     #e7be4b;
+  --color-gold-soft:      rgba(212, 175, 55, 0.25);
+  --color-gold-softer:    rgba(212, 175, 55, 0.15);
+  --color-gold-faint:     rgba(212, 175, 55, 0.08);
+  --color-gold-bg:        rgba(212, 175, 55, 0.1);
+
+  /* --- متن‌ها --- */
+  --color-text-main:      #F5F5F5;
+  --color-text-muted:     #A9B7BE;
+  --color-text-placeholder: #566E7A;
+
+  /* --- حاشیه و خطوط --- */
+  --color-border-input:   #214a5e;
+  --color-border-soft:    rgba(255, 255, 255, 0.05);
+
+  /* --- سایه‌ها --- */
+  --shadow-card:          0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-focus:         0 0 0 3px rgba(212, 175, 55, 0.15);
+  --shadow-btn-hover:     0 8px 20px rgba(212, 175, 55, 0.35);
+}
+
+
+/* ============================================================
+   ریست پایه
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Vazirmatn", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, var(--color-bg-radial) 0%, var(--color-bg-deep) 70%);
+  color: var(--color-text-main);
+  padding: clamp(12px, 2.5vh, 28px) clamp(14px, 2.5vw, 28px);
+}
+
+
+
+.wrapper {
+  width: 100%;
+  max-width: min(1000px, 96vw);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.8vh, 22px);
+}
+
+.page-header {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.page-header h1 {
+  font-size: 30px;
+  color: var(--color-gold);
+  margin-bottom: clamp(2px, 0.6vh, 6px);
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: clamp(12px, 1.6vh, 15px);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 2vw, 22px);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+
+/* ============================================================
+   کارت‌ها
+   ============================================================ */
+
+.card {
+  background: var(--color-bg-mid);
+  border: 1px solid var(--color-gold-soft);
+  border-radius: clamp(14px, 2vh, 20px);
+  padding: clamp(14px, 2.4vh, 26px) clamp(14px, 2vw, 24px);
+  box-shadow: var(--shadow-card),
+              0 0 0 1px var(--color-gold-faint);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: clamp(12.5px, 1.8vh, 15px);
+  font-weight: 600;
+  color: var(--color-gold);
+  margin-bottom: clamp(10px, 1.6vh, 18px);
+  padding-bottom: clamp(8px, 1.4vh, 12px);
+  border-bottom: 1px solid var(--color-gold-softer);
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   فیلدهای ورودی
+   ============================================================ */
+
+.field {
+  margin-bottom: clamp(8px, 1.4vh, 14px);
+}
+
+.field label {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: clamp(4px, 0.8vh, 6px);
+}
+
+.field input {
+  width: 100%;
+  padding: clamp(8px, 1.4vh, 12px) clamp(10px, 1.4vw, 14px);
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-input);
+  border-radius: 10px;
+  color: var(--color-text-main);
+  font-size: clamp(13px, 1.9vh, 15px);
+  transition: 0.2s ease;
+  font-family: inherit;
+}
+
+.field input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-focus);
+}
+
+
+/* ============================================================
+   دکمه‌ها
+   ============================================================ */
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: clamp(10px, 1.6vh, 18px);
+  flex-shrink: 0;
+}
+
+.btn-primary, .btn-secondary {
+  flex: 1;
+  padding: clamp(9px, 1.6vh, 12px);
+  border-radius: 10px;
+  font-size: clamp(13px, 1.8vh, 15px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background:var(--color-gold-light);
+  color: black;
+}
+
+.btn-primary:hover {
+  transform:scale(1.03);
+  box-shadow: var(--shadow-btn-hover);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--color-border-input);
+  color: var(--color-text-muted);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+
+/* ============================================================
+   ستون نتیجه
+   ============================================================ */
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(7px, 1.2vh, 11px) 0;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.result .row:last-child {
+  border-bottom: none;
+}
+
+.result .row strong {
+  color: var(--color-text-main);
+  font-size: clamp(13px, 1.8vh, 15px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.result .row.total {
+  margin-top: clamp(8px, 1.4vh, 12px);
+  padding: clamp(11px, 1.8vh, 16px) clamp(12px, 1.6vw, 18px);
+  background: var(--color-gold-bg);
+  border: 1px dashed rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
+}
+
+.result .row.total span {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.result .row.total strong {
+  color: var(--color-gold);
+  font-size: clamp(16px, 2.4vh, 20px);
+}
+
+
+/* ============================================================
+   حالت خالی (قبل از محاسبه)
+   ============================================================ */
+
+.placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: clamp(16px, 3vh, 40px) 20px;
+  gap: 12px;
+}
+
+.placeholder-icon {
+  font-size: clamp(32px, 5vh, 48px);
+  opacity: 0.4;
+}
+
+.placeholder p {
+  font-size: clamp(12px, 1.7vh, 14px);
+}
+
+
+/* ============================================================
+   📱 تبلت
+   ============================================================ */
+
+@media (max-width: 900px) {
+  body {
+    height: 100dvh;
+    overflow: hidden;
+    padding: 14px;
+  }
+
+  .wrapper { max-width: 100%; }
+
+  .page-header h1 { font-size: clamp(14px, 3vh, 40px); }
+  .card { padding: 18px 16px; }
+  .result .row.total strong { font-size: clamp(16px, 2.6vh, 19px); }
+}
+
+
+/* ============================================================
+   📱 موبایل
+   ============================================================ */
+
+@media (min-width: 0px) and (max-width: 640px) {
+  body {
+    height: auto;
+    min-height: 100dvh;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding: 16px 14px 24px;
+  }
+
+  .wrapper {
+    max-height: none;
+    gap: 14px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    flex: initial;
+    min-height: auto;
+  }
+
+  .card {
+    padding: 18px 16px;
+    border-radius: 16px;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .card-title {
+    font-size: 19px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .field { margin-bottom: 12px; }
+
+  .field label { font-size: 12.5px; }
+
+  .field input {
+    padding: 13px 14px;
+    font-size: 16px;
+  }
+
+  .buttons { padding-top: 14px; }
+
+  .btn-primary, .btn-secondary {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .result .row {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+
+  .result .row strong { font-size: 14px; }
+
+  .result .row.total {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .result .row.total strong { font-size: 20px; }
+
+  .placeholder { padding: 32px 16px; }
+  .placeholder-icon { font-size: 40px; }
+}
+
+
+/* ======================================================
+
+
+/* ============================================================
+   💻 لپ‌تاپ‌های کوتاه (مثل 768×1366)
+   ============================================================ */
+/* 
+@media (min-width: 641px) and (max-height: 720px) {
+  .page-header h1 { font-size: 20px; }
+  .subtitle { font-size: 12px; }
+  .card { padding: 14px 16px; }
+  .field { margin-bottom: 8px; }
+  .field input { padding: 8px 12px; font-size: 13.5px; }
+  .btn-primary, .btn-secondary { padding: 9px; font-size: 13.5px; }
+  .result .row { padding: 7px 0; font-size: 14px; }
+  .result .row.total strong { font-size: 17px; } */
+/* } */
