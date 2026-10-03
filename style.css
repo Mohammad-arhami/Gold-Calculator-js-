@@ -294,8 +294,7 @@ body {
 }
 
 .result .row.total {
-  margin-top: clamp(8px, 1.4vh, 12px);
-  padding: clamp(11px, 1.8vh, 16px) clamp(12px, 1.6vw, 18px);
+  padding: clamp(11px, 1.8vh, 16px);
   background: var(--color-gold-bg);
   border: 1px dashed rgba(212, 175, 55, 0.45);
   border-radius: 12px;
@@ -360,12 +359,14 @@ body {
     height: 100dvh;
     overflow: hidden;
     align-items: center;
-    padding: 10px 12px;
+    padding: 8px 8px;
+    display: flex;
+    align-items: flex-start;
   }
 
   .wrapper {
     max-height: 100%;
-    gap: 8px;
+    gap: 5px;
   }
 
   .page-header {
@@ -376,7 +377,7 @@ body {
   }
 
   .logo { width: 44px; height: 44px; }
-  .page-header h1 { font-size: 16px; margin-bottom: 1px; }
+  .page-header h1 { font-size: 16px;}
   .subtitle { font-size: 10.5px; }
 
   .grid {
@@ -439,6 +440,7 @@ body {
 
   .result .row.total {
     padding: 8px 10px;
+    margin-top: 6px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -467,12 +469,12 @@ body {
    📱 موبایل کوچک
    ============================================================ */
 @media (max-width: 380px) {
-  .logo { width: 50px; height: 50px; }
+  .logo { width: 44px; height: 44px; }
   .page-header h1 { font-size: 14px; }
   .subtitle { font-size: 10px; }
-  .card { padding: 8px 10px; }
-  .card-title { font-size: 11px; margin-bottom: 5px; padding-bottom: 4px; }
-  .field { margin-bottom: 5px; gap: 6px; }
+  .card { padding: 5px 8px; }
+  .card-title { font-size: 11px; padding-bottom: 4px; }
+  .field { margin-bottom: 3px; gap: 6px; }
   .field label { font-size: 11px; min-width: 85px; }
   .field input, .field select { padding: 6px 9px; font-size: 12.5px; }
   .result .row { font-size: 11.5px; padding: 4px 0; }
