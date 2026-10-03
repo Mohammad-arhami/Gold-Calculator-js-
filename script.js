@@ -1,92 +1,84 @@
-// const $ = (id) => document.getElementById(id);
+/* ============================================================
+   ماشین حساب طلا - منطق برنامه
+   ============================================================ */
 
-// function formatNumber(n) {
-//   return Math.round(n).toLocaleString('fa-IR') + ' تومان';
-// }
-
-// function calculate() {
-//   const goldPrice = parseFloat($('goldPrice').value) || 0;
-//   const weight    = parseFloat($('weight').value) || 0;
-
-//   // اجرت و سود پیش‌فرض دارن، ولی کاربر میتونه تغییرشون بده
-//   const wagePercent   = parseFloat($('wagePercent').value);
-//   const profitPercent = parseFloat($('profitPercent').value);
-
-//   // مالیات: اگه خالی بود → ۹٪ | اگه ۰ بود → ۰ | اگه عدد بود → همون
-//   const taxRaw = $('taxPercent').value.trim();
-//   const taxPercent = taxRaw === '' ? 9 : parseFloat(taxRaw) || 0;
-
-//   if (!goldPrice || !weight) {
-//     alert('لطفاً نرخ روز طلا و وزن رو وارد کن');
-//     return;
-//   }
-
-//   // ۱) قیمت طلا
-//   const goldTotal = goldPrice * weight;
-
-//   // ۲) اجرت ساخت = قیمت طلا × درصد اجرت
-//   const wage = goldTotal * (wagePercent / 100);
-
-//   // ۳) سود فروشنده = (قیمت طلا + اجرت) × درصد سود
-//   const profit = (goldTotal + wage) * (profitPercent / 100);
-
-//   // ۴) مالیات = (سود + اجرت) × درصد مالیات
-//   const tax = (profit + wage) * (taxPercent / 100);
-
-//   // ۵) مبلغ نهایی
-//   const total = goldTotal + wage + profit + tax;
-
-//   // نمایش
-//   $('rGold').textContent   = formatNumber(goldTotal);
-//   $('rWage').textContent   = formatNumber(wage);
-//   $('rProfit').textContent = formatNumber(profit);
-//   $('rTax').textContent    = formatNumber(tax);
-//   $('rTotal').textContent  = formatNumber(total);
-
-//   $('result').hidden = false;
-// }
-
-// $('calcBtn').addEventListener('click', calculate);
-
-// $('resetBtn').addEventListener('click', () => {
-//   $('goldPrice').value = '';
-//   $('weight').value = '';
-//   $('wagePercent').value = 5;
-//   $('profitPercent').value = 7;
-//   $('taxPercent').value = '';
-//   $('result').hidden = true;
-// });
-
-
-
-
-
-
-// ! ========================== Version 2
-
+/* --- انتخاب سریع عناصر با id --- */
 const $ = (id) => document.getElementById(id);
 
-/* ---------- فرمت عدد با کاما ---------- */
+
+/* ============================================================
+   ۱) پر کردن dropdown با گزینه‌های سفارشی
+   ============================================================
+   گزینه‌ها:
+   - 0
+   - 1
+   - 1.1, 1.2, 1.3, ..., 1.9
+   - 2
+   - 2.1, 2.2, ..., 2.9
+   - ...
+   - 9
+   - 9.1, 9.2, ..., 9.9
+   - 10
+   ============================================================ */
+function fillPercentDropdown(selectEl, defaultValue) {
+  // پاک کردن گزینه‌های قبلی
+  selectEl.innerHTML = '';
+
+  // گزینه‌ی 0
+  addOption(selectEl, '0', defaultValue);
+
+  // حلقه از 1 تا 10
+  for (let n = 1; n <= 10; n++) {
+    // عدد صحیح (1, 2, 3, ..., 10)
+    addOption(selectEl, String(n), defaultValue);
+
+    // اعداد اعشاری (فقط اگه n < 10 باشه)
+    // مثلاً برای n=1 → 1.1, 1.2, ..., 1.9
+    if (n < 10) {
+      for (let d = 1; d <= 9; d++) {
+        addOption(selectEl, `${n}.${d}`, defaultValue);
+      }
+    }
+  }
+}
+
+/* --- ساخت یه option و اضافه کردنش --- */
+function addOption(selectEl, value, defaultValue) {
+  const option = document.createElement('option');
+  option.value = value;
+
+  // تبدیل اعداد لاتین به فارسی + ممیز فارسی
+  // 0    → ۰
+  // 1.5  → ۱٫۵
+  // 10   → ۱۰
+  const persianValue = value
+    .replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d])   // 0-9 → ۰-۹
+    .replace('.', '٫');                       // . → ٫
+
+  option.textContent = persianValue + '٪';
+
+  // اگه مقدار پیش‌فرض بود، انتخابش کن
+  if (value === defaultValue) option.selected = true;
+
+  selectEl.appendChild(option);
+}
+
+// سود فروشنده → پیش‌فرض 7
+fillPercentDropdown($('profitPercent'), '7');
+
+// مالیات بر ارزش افزوده → پیش‌فرض 9
+fillPercentDropdown($('taxPercent'), '9');
+
+
+/* ============================================================
+   ۲) فرمت کاما موقع تایپ روی فیلد قیمت
+   ============================================================ */
 function formatWithCommas(value) {
-  // فقط رقم نگه می‌داره
   const digits = value.replace(/\D/g, '');
   if (!digits) return '';
-  return Number(digits).toLocaleString('en-US'); // 24,000,000
+  return Number(digits).toLocaleString('en-US');
 }
 
-/* ---------- تبدیل ورودی به عدد خالص ---------- */
-function parseNumber(value) {
-  if (!value) return 0;
-  // حذف کاما و تبدیل اعداد فارسی/عربی به انگلیسی
-  const cleaned = value
-    .replace(/,/g, '')
-    .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
-    .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-  const n = parseFloat(cleaned);
-  return isNaN(n) ? 0 : n;
-}
-
-/* ---------- اعمال کاما روی فیلد قیمت ---------- */
 const goldPriceInput = $('goldPrice');
 goldPriceInput.addEventListener('input', (e) => {
   const caretAtEnd = e.target.selectionStart === e.target.value.length;
@@ -96,12 +88,34 @@ goldPriceInput.addEventListener('input', (e) => {
   }
 });
 
-/* ---------- فرمت خروجی ---------- */
+
+/* ============================================================
+   ۳) تبدیل ورودی به عدد خالص
+   ============================================================ */
+function parseNumber(value) {
+  if (!value) return 0;
+
+  const cleaned = value
+    .replace(/,/g, '')                                       // حذف کاما
+    .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))         // فارسی → انگلیسی
+    .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));        // عربی → انگلیسی
+
+  const n = parseFloat(cleaned);
+  return isNaN(n) ? 0 : n;
+}
+
+
+/* ============================================================
+   ۴) فرمت خروجی
+   ============================================================ */
 function formatResult(n) {
   return Math.round(n).toLocaleString('en-US') + ' تومان';
 }
 
-/* ---------- محاسبه ---------- */
+
+/* ============================================================
+   ۵) محاسبه اصلی
+   ============================================================ */
 function calculate() {
   const goldPrice = parseNumber(goldPriceInput.value);
   const weight    = parseNumber($('weight').value);
@@ -111,13 +125,9 @@ function calculate() {
     return;
   }
 
-  // اجرت و سود: اگه خالی بود → 0
-  const wagePercent   = parseNumber($('wagePercent').value);
-  const profitPercent = parseNumber($('profitPercent').value);
-
-  // مالیات: اگه خالی بود → 9 | عدد بود → همون
-  const taxRaw = $('taxPercent').value.trim();
-  const taxPercent = taxRaw === '' ? 9 : parseNumber(taxRaw);
+  const wagePercent   = parseNumber($('wagePercent').value);      // اجرت
+  const profitPercent = parseNumber($('profitPercent').value);    // سود فروشنده
+  const taxPercent    = parseNumber($('taxPercent').value);       // مالیات
 
   const goldTotal = goldPrice * weight;
   const wage      = goldTotal * (wagePercent / 100);
@@ -135,21 +145,28 @@ function calculate() {
   $('result').hidden = false;
 }
 
+
+/* ============================================================
+   ۶) اتصال رویدادها
+   ============================================================ */
 $('calcBtn').addEventListener('click', calculate);
 
-/* ---------- پاک کردن سریع ---------- */
+
+/* ============================================================
+   ۷) پاک کردن سریع
+   ============================================================ */
 $('resetBtn').addEventListener('click', () => {
   goldPriceInput.value = '';
   $('weight').value = '';
   $('wagePercent').value = '';
-  $('profitPercent').value = '';
+
+  // برگشت به پیش‌فرض
+  $('profitPercent').value = '7';
   $('taxPercent').value = '9';
 
-  // مخفی کردن فوری نتیجه (بدون انیمیشن تأخیری)
   $('result').hidden = true;
   $('result').style.animation = 'none';
   $('placeholder').hidden = false;
 
-  // فوکوس روی فیلد اول
   goldPriceInput.focus();
 });

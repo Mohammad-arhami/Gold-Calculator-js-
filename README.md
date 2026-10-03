@@ -10,9 +10,11 @@ Calculates the final price of gold including **wage**, **seller profit**, and **
 - 🧮 Accurate gold price calculation
 - 💵 Live comma formatting on price input (`24,000,000`)
 - 📊 Detailed breakdown (gold price, wage, profit, VAT, total)
+- 🎛️ Adjustable profit & VAT rates via dropdown
 - 🌗 Elegant navy & gold theme
 - 📱 Fully responsive (mobile, tablet, desktop)
 - 🖥️ Fits the entire viewport on laptops — no scrolling
+- 📱 Mobile-first layout — input + result in one screen
 - 🇮🇷 Full RTL support with Vazirmatn font
 - ⚡ Fast reset button with instant result clearing
 
@@ -32,14 +34,26 @@ Final Price    = Gold Price + Wage + Profit + VAT
 
 ---
 
+## 🎛️ Default Values
+
+| Field | Default | Range |
+|-------|---------|-------|
+| Wage (%) | empty | user input |
+| Profit (%) | **7** | 0 – 10 (step 0.1) |
+| VAT (%) | **9** | 0 – 10 (step 0.1) |
+
+Both dropdowns are populated dynamically with values `0, 1, 1.1, 1.2, ..., 9.9, 10`.
+
+---
+
 ## 🎨 Color Palette
 
 | Role | Color | Hex |
 |------|-------|-----|
-| Background (deep) | Navy | `#0B1F2A` |
+| Background (deep) | Navy | `#0a1d27` |
 | Card background | Navy light | `#132F3E` |
-| Gold (primary) | Gold | `#D4AF37` |
-| Gold (hover) | Light gold | `#F1D27A` |
+| Gold (primary) | Gold | `#d4bc37` |
+| Gold (hover) | Light gold | `#e7be4b` |
 | Text (main) | White | `#F5F5F5` |
 | Text (muted) | Gray | `#A9B7BE` |
 
@@ -49,7 +63,7 @@ Final Price    = Gold Price + Wage + Profit + VAT
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/USERNAME/gold-calculator.git
+   git clone https://github.com/Mohammad-arhami/gold-calculator.git
    ```
 
 2. **Open the project**
@@ -66,7 +80,9 @@ Final Price    = Gold Price + Wage + Profit + VAT
 
 ```
 gold-calculator/
-├── index.html      # Markup + Styles + Logic (all-in-one)
+├── index.html      # Markup
+├── style.css       # Styles (responsive, navy & gold theme)
+├── script.js       # Calculation logic + dynamic dropdowns
 ├── README.md       # Documentation
 └── LICENSE         # MIT License
 ```
@@ -76,7 +92,7 @@ gold-calculator/
 ## 🛠️ Tech Stack
 
 - **HTML5** — semantic markup with RTL
-- **CSS3** — `clamp()`, CSS variables, grid, media queries
+- **CSS3** — `clamp()`, CSS variables, grid, flexbox, media queries
 - **JavaScript (ES6+)** — vanilla, no dependencies
 - **Vazirmatn** — Persian font via Google Fonts
 
@@ -88,14 +104,16 @@ gold-calculator/
 |--------|----------|
 | 🖥️ Desktop (>900px) | Two-column layout, fits viewport |
 | 📱 Tablet (640–900px) | Two-column, scaled down |
-| 📱 Mobile (<640px) | Single-column, scrollable |
-| 💻 Short laptops (<720px height) | Compact spacing |
+| 📱 Mobile (<640px) | Single-column, one-screen layout (no scroll) |
+| 📱 Small mobile (<380px) | Compact fonts and spacing |
 
 ---
 
 ## 🗺️ Roadmap
 
 - [x] Vanilla JS version
+- [x] Dynamic dropdowns for profit & VAT
+- [x] Mobile-first one-screen layout
 - [ ] React version
 - [ ] Save calculation history
 - [ ] Copy result button
@@ -106,7 +124,7 @@ gold-calculator/
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/USERNAME/gold-calculator/issues).
+Feel free to check the [issues page](https://github.com/Mohammad-arhami/gold-calculator/issues).
 
 ---
 
@@ -118,9 +136,8 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 👤 Author
 
-**Your Name**  
-- GitHub: [@USERNAME](https://github.com/USERNAME)
-- Email: your.email@example.com
+**Mohammad Arhami**  
+- GitHub: [@Mohammad-arhami](https://github.com/Mohammad-arhami)
 
 ---
 
