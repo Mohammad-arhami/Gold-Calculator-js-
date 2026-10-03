@@ -374,8 +374,8 @@ body {
     align-items: center;
     gap: 10px;
     padding: 0;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
   }
 
   .logo { width: 44px; height: 44px; }
@@ -458,6 +458,7 @@ body {
   .buttons {
     gap: 6px;
     padding-top: 0;
+    margin-top: 15px;
   }
 
   .btn-primary, .btn-secondary {
