@@ -396,13 +396,13 @@ body {
 
   .card-title {
     font-size: 12px;
-    margin-bottom: 6px;
+    margin-bottom: 1px;
     padding-bottom: 5px;
   }
 
   /* فیلدها: برچسب چپ، input راست — تو یه ردیف */
   .field {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -449,7 +449,7 @@ body {
   .result .row.total span { font-size: 12px; }
   .result .row.total strong { font-size: 15px; }
 
-  .placeholder { padding: 12px 8px; gap: 6px; }
+  .placeholder { display: none; padding: 12px 8px; gap: 6px; }
   .placeholder-icon { font-size: 24px; }
   .placeholder p { font-size: 11px; }
 
