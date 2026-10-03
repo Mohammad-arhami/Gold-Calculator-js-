@@ -375,7 +375,7 @@ body {
     gap: 10px;
     padding: 0;
     margin-top: 25px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   .logo { width: 44px; height: 44px; }
@@ -392,7 +392,7 @@ body {
   .card {
     padding: 10px 12px;
     border-radius: 12px;
-    min-height: 0;
+    min-height: 210px;
     overflow: hidden;
   }
 
@@ -433,6 +433,10 @@ body {
     padding-left: 28px;
   }
 
+  .header-card{
+    min-height: 190px;
+  }
+
   .result .row {
     font-size: 12px;
     padding: 5px 0;
@@ -442,7 +446,7 @@ body {
 
   .result .row.total {
     padding: 8px 10px;
-    margin-top: 6px;
+    margin-top: 3px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -458,7 +462,7 @@ body {
   .buttons {
     gap: 6px;
     padding-top: 0;
-    margin-top: 15px;
+    margin-top: 10px;
   }
 
   .btn-primary, .btn-secondary {
