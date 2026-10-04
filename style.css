@@ -441,7 +441,7 @@ body {
   .field input,
   .field select {
     padding: 6px 10px;
-    font-size: 13px;
+    font-size: 16px;
     flex: 1;
     width: auto;
     min-width: 0;
