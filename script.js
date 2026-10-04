@@ -221,6 +221,22 @@ function parseNumber(value) {
 }
 
 
+/* برای فیلدهای اعشاری — کاما و ممیز هر دو یعنی نقطه اعشار */
+function parseDecimal(value) {
+  if (!value) return 0;
+  const cleaned = String(value)
+    // تبدیل اعداد فارسی/عربی
+    .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+    .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+    // تبدیل همه‌ی ممیزها (کاما، ممیز فارسی، ...) به نقطه
+    .replace(/[٫٬،,]/g, '.')
+    // حذف کاراکترهای غیرمجاز
+    .replace(/[^0-9.\-]/g, '');
+  const n = parseFloat(cleaned);
+  return isNaN(n) ? 0 : n;
+}
+
+
 
 
 /* ============================================================
@@ -244,16 +260,16 @@ function calculate() {
   }
 
   const goldPrice = parseNumber(goldPriceRaw);
-  const weight    = parseNumber(weightRaw);
+  const weight    = parseDecimal(weightRaw);
 
   if (!goldPrice || !weight) {
     showPlaceholder();
     return;
   }
 
-  const wagePercent   = parseNumber($('wagePercent').value);   // خالی → 0
-  const profitPercent = parseNumber($('profitPercent').value); // خالی → 0
-  const taxPercent    = parseNumber($('taxPercent').value);    // خالی → 0
+  const wagePercent   = parseDecimal($('wagePercent').value);   // خالی → 0 
+  const profitPercent = parseDecimal($('profitPercent').value); // خالی → 0 
+  const taxPercent    = parseDecimal($('taxPercent').value);    // خالی → 0 
 
   const goldTotal = goldPrice * weight;
   const wage      = goldTotal * (wagePercent / 100);
