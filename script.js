@@ -213,11 +213,14 @@ function parseNumber(value) {
   const cleaned = value
     .replace(/,/g, '')
     .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
-    .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+    .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+    .replace(/٫/g, '.');
 
   const n = parseFloat(cleaned);
   return isNaN(n) ? 0 : n;
 }
+
+
 
 
 /* ============================================================
