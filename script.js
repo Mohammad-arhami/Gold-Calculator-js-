@@ -248,13 +248,9 @@ function calculate() {
     return;
   }
 
-  const wagePercent = parseNumber($('wagePercent').value);
-
-  const profitRaw = $('profitPercent').value.trim();
-  const profitPercent = profitRaw === '' ? 7 : parseNumber(profitRaw);
-
-  const taxRaw = $('taxPercent').value.trim();
-  const taxPercent = taxRaw === '' ? 10 : parseNumber(taxRaw);
+  const wagePercent   = parseNumber($('wagePercent').value);   // خالی → 0
+  const profitPercent = parseNumber($('profitPercent').value); // خالی → 0
+  const taxPercent    = parseNumber($('taxPercent').value);    // خالی → 0
 
   const goldTotal = goldPrice * weight;
   const wage      = goldTotal * (wagePercent / 100);
@@ -278,11 +274,20 @@ function calculate() {
    ۵) برگشت به حالت placeholder
    ============================================================ */
 function showPlaceholder() {
+  // مخفی کردن نتیجه
   $('result').hidden = true;
   $('result').style.animation = 'none';
+
+  // پاک کردن محتوای نتیجه (برگشت به —)
+  $('rGold').textContent   = '—';
+  $('rWage').textContent   = '—';
+  $('rProfit').textContent = '—';
+  $('rTax').textContent    = '—';
+  $('rTotal').textContent  = '—';
+
+  // نمایش placeholder
   $('placeholder').hidden = false;
 }
-
 
 /* ============================================================
    ۶) اتصال رویدادها
@@ -315,5 +320,6 @@ $('resetBtn').addEventListener('click', () => {
 
   showPlaceholder();
 
-  goldPriceInput.focus();
 });
+
+
