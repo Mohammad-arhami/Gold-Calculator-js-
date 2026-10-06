@@ -238,7 +238,6 @@ function parseDecimal(value) {
 
 
 
-
 /* ============================================================
    ۳) فرمت خروجی
    ============================================================ */
@@ -266,7 +265,7 @@ function calculate() {
     showPlaceholder();
     return;
   }
-
+  
   const wagePercent   = parseDecimal($('wagePercent').value);   // خالی → 0 
   const profitPercent = parseDecimal($('profitPercent').value); // خالی → 0 
   const taxPercent    = parseDecimal($('taxPercent').value);    // خالی → 0 
@@ -334,8 +333,8 @@ $('resetBtn').addEventListener('click', () => {
   $('weight').value = '';
   $('wagePercent').value = '';
 
-  $('profitPercent').value = '7';
-  $('taxPercent').value = '10';
+  $('profitPercent').value = '7 %';
+  $('taxPercent').value = '10 %';
 
   showPlaceholder();
 
