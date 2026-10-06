@@ -426,7 +426,6 @@ body {
     gap: 8px;
     display: flex;
     justify-content: space-between;
-    position: relative;
   }
 
   .field label {
@@ -447,13 +446,6 @@ body {
     max-width: 65%;
   }
 
-  .field .span-sperecentage{
-    position: absolute;
-    top: 6px;
-    left: 39%;
-    font-size: 15px;
-    opacity: 0.9;
-  }
   /* .field select {
     background-position: left 8px center;
     background-size: 14px;

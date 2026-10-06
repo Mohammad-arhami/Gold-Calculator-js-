@@ -333,8 +333,8 @@ $('resetBtn').addEventListener('click', () => {
   $('weight').value = '';
   $('wagePercent').value = '';
 
-  $('profitPercent').value = '7 %';
-  $('taxPercent').value = '10 %';
+  $('profitPercent').value = '7';
+  $('taxPercent').value = '10';
 
   showPlaceholder();
 
