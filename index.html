@@ -15,8 +15,8 @@
   <div class="wrapper">
     <header class="page-header">
       <div class="header-text">
-        <h1>💰 ماشین حساب طلا</h1>
-        <p class="subtitle">قیمت نهایی خرید طلا را دقیق محاسبه کن</p>
+        <h1> 0912-093-1230 </h1>
+        <p class="subtitle">📞 در صورت بروز مشکل تماس یگیرید </p>
       </div>
       <!-- 🖼️ لوگو - آدرس عکس رو اینجا بذار -->
        <a href="https://www.instagram.com/miladgold?stkn=N2N3bXAyOGx5MWJ6&utm_source=qr" target="_blank">
@@ -40,9 +40,13 @@
           <input type="text" inputmode="decimal" id="weight" placeholder="1.5" />
         </div>
 
-        <div class="field ">
+        <div class="field">
           <label>اجرت ساخت</label>
-          <input type="text" inputmode="text" id="wagePercent" placeholder="5 %" />
+          <div class="combo-wrap">
+            <input type="text" inputmode="text" id="wagePercent" placeholder="5 %" autocomplete="off"/>
+            <button type="button" class="combo-toggle" id="wageToggle">▼ %</button>
+            <ul class="combo-list" id="wageList" hidden></ul>
+          </div>
         </div>
 
         <!-- <div class="field">
@@ -76,9 +80,6 @@
           <div class="row total"><span>قیمت طلای ساخته:</span><strong id="rTotal">—</strong></div>
         </div>
 
-        <div class="placeholder" id="placeholder">
-          <p>اطلاعات را وارد کن و روی «محاسبه» بزن</p>
-        </div>
       </aside>
     </main>
 

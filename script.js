@@ -341,3 +341,65 @@ $('resetBtn').addEventListener('click', () => {
 });
 
 
+
+
+/* ============================================================
+   ComboBox — ترکیب input + dropdown
+   ============================================================
+   - ۱ تا ۳۰ (عدد صحیح) تو لیست
+   - کاربر می‌تونه تایپ کنه (حتی اعشاری مثل 1.11)
+   - با کلیک روی فلش، لیست باز/بسته میشه
+   ============================================================ */
+function setupComboBox(inputId, listId, toggleId) {
+  const input  = $(inputId);
+  const list   = $(listId);
+  const toggle = $(toggleId);
+
+  if (!input || !list || !toggle) return;
+
+  // ۱) پر کردن لیست با اعداد 1 تا 30
+  for (let i = 1; i <= 30; i++) {
+    const li = document.createElement('li');
+    li.textContent = i + ' %';
+    li.dataset.value = i;
+
+    li.addEventListener('click', () => {
+      input.value = i + ' %';
+      list.hidden = true;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    list.appendChild(li);
+  }
+
+  // ۲) باز/بسته کردن لیست با فلش
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    list.hidden = !list.hidden;
+    if (!list.hidden) markSelected();
+  });
+
+
+  // ۴) بستن لیست وقتی کاربر بیرون کلیک می‌کنه
+  document.addEventListener('click', (e) => {
+    if (!input.contains(e.target) && !list.contains(e.target) && !toggle.contains(e.target)) {
+      list.hidden = true;
+    }
+  });
+
+  // ۵) علامت‌گذاری گزینه‌ی انتخاب‌شده
+  function markSelected() {
+    const current = input.value.trim();
+    list.querySelectorAll('li').forEach(li => {
+      li.classList.toggle('selected', li.dataset.value === current);
+    });
+  }
+
+  // ۶) Escape → بستن لیست
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') list.hidden = true;
+  });
+}
+
+// اعمال روی فیلد اجرت
+setupComboBox('wagePercent', 'wageList', 'wageToggle');
