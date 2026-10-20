@@ -403,3 +403,17 @@ function setupComboBox(inputId, listId, toggleId) {
 
 // اعمال روی فیلد اجرت
 setupComboBox('wagePercent', 'wageList', 'wageToggle');
+
+
+
+
+
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/Gold-Calculator-js-/service-worker.js')
+      .then((reg) => console.log('Service Worker registered:', reg))
+      .catch((err) => console.error('Service Worker failed:', err));
+  });
+}
