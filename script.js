@@ -249,6 +249,47 @@ function formatResult(n) {
 /* ============================================================
    ۴) محاسبه‌ی زنده
    ============================================================ */
+// function calculate() {
+//   const goldPriceRaw = goldPriceInput.value.trim();
+//   const weightRaw    = $('weight').value.trim();
+
+//   if (!goldPriceRaw || !weightRaw) {
+//     showPlaceholder();
+//     return;
+//   }
+
+//   const goldPrice = parseNumber(goldPriceRaw);
+//   const weight    = parseDecimal(weightRaw);
+
+//   if (!goldPrice || !weight) {
+//     showPlaceholder();
+//     return;
+//   }
+  
+//   const wagePercent   = parseDecimal($('wagePercent').value);   // خالی → 0 
+//   const profitPercent = parseDecimal($('profitPercent').value); // خالی → 0 
+//   const taxPercent    = parseDecimal($('taxPercent').value);    // خالی → 0 
+
+//   const goldTotal = goldPrice * weight;
+//   const wage      = goldTotal * (wagePercent / 100);
+//   const profit    = (goldTotal + wage) * (profitPercent / 100);
+//   const tax       = (profit + wage) * (taxPercent / 100);
+//   const total     = goldTotal + wage + profit + tax;
+
+//   $('rGold').textContent   = formatResult(goldTotal);
+//   $('rWage').textContent   = formatResult(wage);
+//   $('rProfit').textContent = formatResult(profit);
+//   $('rTax').textContent    = formatResult(tax);
+//   $('rTotal').textContent  = formatResult(total);
+
+//   $('placeholder').hidden = true;
+//   $('result').hidden = false;
+//   $('result').style.animation = 'fadeIn 0.25s ease';
+// }
+
+
+// ! calculate func for karat
+
 function calculate() {
   const goldPriceRaw = goldPriceInput.value.trim();
   const weightRaw    = $('weight').value.trim();
@@ -258,19 +299,23 @@ function calculate() {
     return;
   }
 
-  const goldPrice = parseNumber(goldPriceRaw);
-  const weight    = parseDecimal(weightRaw);
+  const goldPrice18 = parseNumber(goldPriceRaw); // قیمت پایه (۱۸ عیار)
+  const weight      = parseDecimal(weightRaw);
+  const selectedKarat = parseNumber($('goldKarat').value); // عیار انتخابی
 
-  if (!goldPrice || !weight) {
+  if (!goldPrice18 || !weight) {
     showPlaceholder();
     return;
   }
-  
-  const wagePercent   = parseDecimal($('wagePercent').value);   // خالی → 0 
-  const profitPercent = parseDecimal($('profitPercent').value); // خالی → 0 
-  const taxPercent    = parseDecimal($('taxPercent').value);    // خالی → 0 
 
-  const goldTotal = goldPrice * weight;
+  // ✨ تبدیل قیمت ۱۸ عیار به عیار انتخابی
+  const goldPriceConverted = goldPrice18 * (selectedKarat / 18);
+
+  const wagePercent   = parseDecimal($('wagePercent').value);
+  const profitPercent = parseDecimal($('profitPercent').value);
+  const taxPercent    = parseDecimal($('taxPercent').value);
+
+  const goldTotal = goldPriceConverted * weight;
   const wage      = goldTotal * (wagePercent / 100);
   const profit    = (goldTotal + wage) * (profitPercent / 100);
   const tax       = (profit + wage) * (taxPercent / 100);
@@ -317,7 +362,8 @@ const liveInputs = [
   'weight',
   'wagePercent',
   'profitPercent',
-  'taxPercent'
+  'taxPercent',
+  'goldKarat'
 ];
 
 liveInputs.forEach(id => {
