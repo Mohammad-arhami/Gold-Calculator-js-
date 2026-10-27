@@ -5,7 +5,10 @@ const ASSETS = [
   '/Gold-Calculator-js-/style.css',
   '/Gold-Calculator-js-/script.js',
   '/Gold-Calculator-js-/icon-192.png',
-  '/Gold-Calculator-js-/icon-512.png'
+  '/Gold-Calculator-js-/icon-512.png',
+  '/Gold-Calculator-js-/iaunchericon-512x512.png',
+  '/Gold-Calculator-js-/Images/blue-icon-192x192.png',
+  '/Gold-Calculator-js-/Images/blue-icon-512x512.png'
 ];
 
 // نصب: کش کردن فایل‌ها
